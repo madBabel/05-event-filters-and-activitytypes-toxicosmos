@@ -1,5 +1,0 @@
-{
-    "yaml.schemas": {
-        "https://json.schemastore.org/github-action.json": "file:///workspaces/github-starter-course-1/.github/actions/utils/action.yml"
-    }
-}
