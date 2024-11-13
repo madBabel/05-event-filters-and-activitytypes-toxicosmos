@@ -34,7 +34,7 @@ jobs:
  
       - name: Check step executed for JOB
         id: check_Steps_for_JOB5
-        uses: madBabel/check-jobs-steps-gha-action@v2
+        uses: madBabel/check-jobs-steps-gha-action@v3
         with:
           run-id: ${{needs.get-workflow-id5.outputs.run_id}}
           job-to-execute: echo          
@@ -61,7 +61,7 @@ jobs:
  
       - name: Check step executed for JOB
         id: check_Steps_for_JOB6
-        uses: madBabel/check-jobs-steps-gha-action@v2
+        uses: madBabel/check-jobs-steps-gha-action@v3
         with:
           run-id: ${{needs.get-workflow-id6.outputs.run_id}}
           job-to-execute: echo       
