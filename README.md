@@ -5,7 +5,7 @@ explorar las diferentes formas en que podemos utilizar event-filters y activity 
 ## Tareas
 
 
-1. Crear un archivo llamado `05-1-efilters.yaml` en la carpeta `.github/workflows` en la raíz del repositorio.. Los datos del workflow deben ser los siguientes:
+1. Crear un archivo llamado `05-efilters.yaml` en la carpeta `.github/workflows` en la raíz del repositorio.. Los datos del workflow deben ser los siguientes:
     - nombre: 05 - Event Filters.
     - desencadentes:
       - push, usar filtros de eventos para restringir las ejecuciones de este workflow para que se activen **solo** mediante cambios en la rama `features`.
@@ -14,8 +14,7 @@ explorar las diferentes formas en que podemos utilizar event-filters y activity 
 2. Confirmar los cambios sobre la rama principal (main) y subir (push) el código. Inspeccionar el resultado de la ejecución del workflow. :stuck_out_tongue:
 3. Edite el archivo README.md (con cualquier texto) en la raíz del repositorio con los cambios que considere oportunos y confirme los cambios en una nueva rama `features`.
 4. Confirmar los cambios y subir (push) el código. Inspeccionar el resultado de la ejecución del workflow.
-
-5. Crear un archivo llamado `05-2-atypes.yaml` en la carpeta `.github/workflows` en la raíz del repositorio.. Los datos del workflow deben ser los siguientes:
+5. Acceder a la rama principal de nuevo, y Crear un archivo llamado `06-atypes.yaml` en la carpeta `.github/workflows` en la raíz del repositorio.. Los datos del workflow deben ser los siguientes:
     - nombre: 06 - Activity Types.    
     - desencadentes: 
       - pull_request, únicamente con los activity types `opened` y `synchronize` para restringir el arranque del flujo solo para abrir y sincronizar PR's. Además, añadir un filtro para que solo aplique cuando la rama base sea `develop`
