@@ -12,7 +12,7 @@ permissions:
 
 
 jobs:
-  get-workflow-id5:
+  get-workflow-EventFilter:
     outputs:
       run_id: ${{steps.get_workflow.outputs.run_id}}
     runs-on: ubuntu-latest
@@ -27,21 +27,21 @@ jobs:
             event: 'push'
             branch: 'features'
 
-  checkJob5:   
-    needs: get-workflow-id5
+  checkJobEventFilter:   
+    needs: get-workflow-EventFilter
     runs-on: ubuntu-latest    
     outputs: 
-      stepsExecuted: ${{steps.check_Steps_for_JOB5.outputs.stepsExecuted}}
+      stepsExecuted: ${{steps.check_Steps_for_eFilters.outputs.stepsExecuted}}
     steps:     
  
       - name: Check step executed for JOB
-        id: check_Steps_for_JOB5
+        id: check_Steps_for_eFilters
         uses: madBabel/check-jobs-steps-gha-action@v3
         with:
-          run-id: ${{needs.get-workflow-id5.outputs.run_id}}
+          run-id: ${{needs.get-workflow-EventFilter.outputs.run_id}}
           job-to-execute: echo          
             
-  get-workflow-id6:
+  get-workflow-aTypes:
     outputs:
       run_id: ${{steps.get_workflow.outputs.run_id}}
     runs-on: ubuntu-latest
@@ -49,29 +49,29 @@ jobs:
     steps:          
       - name: Get workFlow Run
         id: get_workflow
-        uses: madBabel/get-run-id-of-wf-action@v3
+        uses: madBabel/get-run-id-of-wf-action@v4
         with:
             workflow-file: '06-atypes.yaml'    
             status: 'success'
             event: 'pull_request'
             branch: 'develop'
 
-  checkJob6:   
-    needs: get-workflow-id6
+  checkJobATypes:   
+    needs: get-workflow-aTypes
     runs-on: ubuntu-latest    
     outputs: 
-      stepsExecuted: ${{steps.check_Steps_for_JOB6.outputs.stepsExecuted}}
+      stepsExecuted: ${{steps.check_Steps_for_aTypes.outputs.stepsExecuted}}
     steps:     
  
       - name: Check step executed for JOB
-        id: check_Steps_for_JOB6
+        id: check_Steps_for_aTypes
         uses: madBabel/check-jobs-steps-gha-action@v3
         with:
           run-id: ${{needs.get-workflow-id6.outputs.run_id}}
           job-to-execute: echo       
 
   autograding-reporter:    
-      needs: [checkJob5, checkJob6]
+      needs: [checkJobEventFilter, checkJobATypes]
       runs-on: ubuntu-latest    
       steps:           
       - name: Run Autograding Step Tests for HEL
@@ -79,7 +79,7 @@ jobs:
         id: test1
         with:
             test-name: 'Test 5 executed'   
-            command: 'echo ${{needs.checkJob5.outputs.stepsExecuted}}'
+            command: 'echo ${{needs.checkJobEventFilter.outputs.stepsExecuted}}'
             input: ''
             expected-output: 'true'
             comparison-method: 'exact'  
@@ -89,7 +89,7 @@ jobs:
         id: test2
         with:
             test-name: 'Test 6 executed'   
-            command: 'echo ${{needs.checkJob6.outputs.stepsExecuted}}'
+            command: 'echo ${{needs.checkJobATypes.outputs.stepsExecuted}}'
             input: ''
             expected-output: 'true'
             comparison-method: 'exact'  
