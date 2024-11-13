@@ -4,7 +4,6 @@ on:
      branches: [feedback]
   repository_dispatch:
   workflow_dispatch: 
-  push: 
 permissions:
   checks: write
   actions: read
@@ -54,7 +53,7 @@ jobs:
             workflow-file: '06-atypes.yaml'    
             status: 'success'
             event: 'pull_request' 
-            branch: 'develop'          
+            branch: 'feat-1-act-Types'          
 
   checkJobATypes:   
     needs: get-workflow-aTypes
