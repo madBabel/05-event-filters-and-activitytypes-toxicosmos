@@ -53,7 +53,8 @@ jobs:
         with:
             workflow-file: '06-atypes.yaml'    
             status: 'success'
-            event: 'pull_request'           
+            event: 'pull_request' 
+            branch: 'develop'          
 
   checkJobATypes:   
     needs: get-workflow-aTypes
@@ -66,7 +67,7 @@ jobs:
         id: check_Steps_for_aTypes
         uses: madBabel/check-jobs-steps-gha-action@v3
         with:
-          run-id: ${{needs.get-workflow-id6.outputs.run_id}}
+          run-id: ${{needs.get-workflow-aTypes.outputs.run_id}}
           job-to-execute: echo       
 
   autograding-reporter:    
