@@ -20,10 +20,12 @@ jobs:
     steps:          
       - name: Get workFlow Run
         id: get_workflow
-        uses: madBabel/get-run-id-of-wf-action@v2
+        uses: madBabel/get-run-id-of-wf-action@v4
         with:
             workflow-file: '05-efilters.yaml'    
             status: 'success'
+            event: 'push'
+            branch: 'features'
 
   checkJob5:   
     needs: get-workflow-id5
@@ -47,10 +49,12 @@ jobs:
     steps:          
       - name: Get workFlow Run
         id: get_workflow
-        uses: madBabel/get-run-id-of-wf-action@v2
+        uses: madBabel/get-run-id-of-wf-action@v3
         with:
             workflow-file: '06-atypes.yaml'    
             status: 'success'
+            event: 'pull_request'
+            branch: 'develop'
 
   checkJob6:   
     needs: get-workflow-id6
