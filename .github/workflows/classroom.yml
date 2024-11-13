@@ -1,8 +1,10 @@
 name: Autograding Tests
 on:
-  push:
+  pull_request: 
      branches: [feedback]
   repository_dispatch:
+  workflow_dispatch: 
+  push: 
 permissions:
   checks: write
   actions: read
@@ -10,7 +12,7 @@ permissions:
 
 
 jobs:
-  get-workflow-id:
+  get-workflow-id5:
     outputs:
       run_id: ${{steps.get_workflow.outputs.run_id}}
     runs-on: ubuntu-latest
@@ -20,43 +22,79 @@ jobs:
         id: get_workflow
         uses: madBabel/get-run-id-of-wf-action@v2
         with:
-            workflow-file: 'workflow.yml'    
+            workflow-file: '05-efilters.yaml'    
             status: 'success'
 
-  checkJob:   
-    needs: get-workflow-id
+  checkJob5:   
+    needs: get-workflow-id5
     runs-on: ubuntu-latest    
     outputs: 
-      stepsExecuted: ${{steps.check_Steps_for_JOB.outputs.stepsExecuted}}
+      stepsExecuted: ${{steps.check_Steps_for_JOB5.outputs.stepsExecuted}}
     steps:     
  
       - name: Check step executed for JOB
-        id: check_Steps_for_JOB
+        id: check_Steps_for_JOB5
         uses: madBabel/check-jobs-steps-gha-action@v2
         with:
-          run-id: ${{needs.get-workflow-id.outputs.run_id}}
-          job-to-execute: Saludo
-          steps-to-execute: echo-hello-world
+          run-id: ${{needs.get-workflow-id5.outputs.run_id}}
+          job-to-execute: echo          
             
+  get-workflow-id6:
+    outputs:
+      run_id: ${{steps.get_workflow.outputs.run_id}}
+    runs-on: ubuntu-latest
+
+    steps:          
+      - name: Get workFlow Run
+        id: get_workflow
+        uses: madBabel/get-run-id-of-wf-action@v2
+        with:
+            workflow-file: '06-atypes.yaml'    
+            status: 'success'
+
+  checkJob6:   
+    needs: get-workflow-id6
+    runs-on: ubuntu-latest    
+    outputs: 
+      stepsExecuted: ${{steps.check_Steps_for_JOB6.outputs.stepsExecuted}}
+    steps:     
+ 
+      - name: Check step executed for JOB
+        id: check_Steps_for_JOB6
+        uses: madBabel/check-jobs-steps-gha-action@v2
+        with:
+          run-id: ${{needs.get-workflow-id6.outputs.run_id}}
+          job-to-execute: echo       
 
   autograding-reporter:    
-      needs: [checkJob]
+      needs: [checkJob5, checkJob6]
       runs-on: ubuntu-latest    
       steps:           
       - name: Run Autograding Step Tests for HEL
         uses: classroom-resources/autograding-io-grader@v1      
         id: test1
         with:
-            test-name: 'Test Step executed'   
-            command: 'echo ${{needs.checkJob.outputs.stepsExecuted}}'
+            test-name: 'Test 5 executed'   
+            command: 'echo ${{needs.checkJob5.outputs.stepsExecuted}}'
             input: ''
             expected-output: 'true'
             comparison-method: 'exact'  
-            max-score: 100
-            
+            max-score: 50
+      - name: Run Autograding Step Tests for HEL
+        uses: classroom-resources/autograding-io-grader@v1      
+        id: test2
+        with:
+            test-name: 'Test 6 executed'   
+            command: 'echo ${{needs.checkJob6.outputs.stepsExecuted}}'
+            input: ''
+            expected-output: 'true'
+            comparison-method: 'exact'  
+            max-score: 50     
+
       - name: Autograding Reporter
         uses: classroom-resources/autograding-grading-reporter@v1     
         with:
-           runners: test1
+           runners: test1,test2
         env:
-          TEST1_RESULTS: "${{ steps.test1.outputs.result }}"      
+          TEST1_RESULTS: "${{ steps.test1.outputs.result }}"
+          TEST2_RESULTS: "${{ steps.test2.outputs.result }}"      
