@@ -2,7 +2,8 @@ name: 05 - Event Filters
 
 on:
   push:    
-     - features
+     branches: 
+        - features
 
 jobs:
   echo:
