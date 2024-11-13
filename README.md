@@ -21,8 +21,9 @@ explorar las diferentes formas en que podemos utilizar event-filters y activity 
     - Trabajos:
         - `echo`, que tiene un solo step, que simplemente imprime el siguiente mensaje en la pantalla: `'Running whenever a PR is opened or synchronized AND base branch is develop'`.
 6. Confirmar los cambios y subir (push) el código en la rama main. Inspeccionar el resultado de la ejecución del workflow.
-7. Crear una rama `feat-1-act-Types` a partir de develop.
+7. Crear una rama `develop` a partir de main, y a su vez, una rama `feat-1-act-Types` a partir de develop.
 8. Edite el archivo README.md en la raíz del repositorio con los cambios que considere oportunos y confirme los cambios en una la rama creada anteriormente
 9. Confirmar los cambios y subir (push) el código. 
 10. Crear un PR para fusionar la rama `feat-1-act-Types` en `develop`. Inspeccionar el resultado de la ejecución del workflow.
 11. Edite de nuevo el archivo README.md en la rama `feat-1-act-Types`, confirme los cambios y suba (push) el código.  Inspeccionar el resultado de la ejecución del workflow.
+
