@@ -53,8 +53,7 @@ jobs:
         with:
             workflow-file: '06-atypes.yaml'    
             status: 'success'
-            event: 'pull_request'
-            branch: 'develop'
+            event: 'pull_request'           
 
   checkJobATypes:   
     needs: get-workflow-aTypes
