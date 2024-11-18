@@ -6,5 +6,6 @@ on:
 jobs:
   build: 
     runs-on: ubuntu-latest
-    run:    
-      echo 'Running whenever branch is features' 
+    steps:
+      - run: echo 'Running whenever branch is features'
+ 
