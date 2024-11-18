@@ -1,7 +1,8 @@
 name: 05 - Event Filters
-on: push
-  branches: 
-    - 'features/**'
+on: 
+  push:
+    branches: 
+      - 'features/**'
 jobs:
   build: 
     runs-on: ubuntu-latest
