@@ -12,7 +12,7 @@ explorar las diferentes formas en que podemos utilizar event-filters y activity 
     - Trabajos:
         - `echo`, que tiene un solo step, que simplemente imprime el siguiente mensaje en la pantalla: `'Running whenever branch is features'`.
 2. Confirmar los cambios sobre la rama principal (main) y subir (push) el código. Inspeccionar el resultado de la ejecución del workflow. :stuck_out_tongue:
-3. Edite el archivo README.md (con cualquier texto) en la raíz del repositorio con los cambios que considere oportunos y confirme los cambios en una nueva rama `features`.
+3. Edite el archivo README.md (con cualquier texto) en la raíz del repositorio con los cambios que considere oportunos y confirme los cambios en una nueva rama `features`. EDITADO
 4. Confirmar los cambios y subir (push) el código. Inspeccionar el resultado de la ejecución del workflow.
 5. Acceder a la rama principal de nuevo, y Crear un archivo llamado `06-atypes.yaml` en la carpeta `.github/workflows` en la raíz del repositorio.. Los datos del workflow deben ser los siguientes:
     - nombre: 06 - Activity Types.    
